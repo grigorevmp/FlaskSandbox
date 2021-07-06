@@ -1,0 +1,75 @@
+2021-07-06 13:19:27,853 INFO: Microblog startup [in D:\PythonProjects\flaskTest\app\__init__.py:52]
+2021-07-06 13:19:50,969 INFO: Microblog startup [in D:\PythonProjects\flaskTest\app\__init__.py:52]
+2021-07-06 13:27:54,820 INFO: Microblog startup [in D:\PythonProjects\flaskTest\app\__init__.py:52]
+2021-07-06 13:27:59,286 ERROR: Exception on /user/Mike [GET] [in d:\pythonprojects\flasktest\venv\lib\site-packages\flask\app.py:1454]
+Traceback (most recent call last):
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1770, in _execute_context
+    self.dialect.do_execute(
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\engine\default.py", line 717, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: followers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\flask\app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\flask\app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\flask\app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\flask\app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "D:\PythonProjects\flaskTest\app\routes.py", line 90, in user
+    return render_template('user.html', user=user, posts=posts)
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\flask\templating.py", line 147, in render_template
+    return _render(
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\flask\templating.py", line 128, in _render
+    rv = template.render(context)
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\jinja2\environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\jinja2\environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "D:\PythonProjects\flaskTest\app\templates\user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "D:\PythonProjects\flaskTest\app\templates\base.html", line 32, in top-level template code
+    {% block content %}{% endblock %}
+  File "D:\PythonProjects\flaskTest\app\templates\user.html", line 14, in block 'content'
+    <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\orm\dynamic.py", line 373, in count
+    return self._generate(sess).count()
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3088, in count
+    return self._from_self(col).enable_eagerloads(False).scalar()
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2829, in scalar
+    ret = self.one()
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2806, in one
+    return self._iter().one()
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2844, in _iter
+    result = self.session.execute(
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\orm\session.py", line 1689, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1582, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1451, in _execute_clauseelement
+    ret = self._execute_context(
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1813, in _execute_context
+    self._handle_dbapi_exception(
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1994, in _handle_dbapi_exception
+    util.raise_(
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1770, in _execute_context
+    self.dialect.do_execute(
+  File "d:\pythonprojects\flasktest\venv\lib\site-packages\sqlalchemy\engine\default.py", line 717, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: followers
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen 
+FROM user, followers 
+WHERE followers.followed_id = ? AND followers.follower_id = user.id) AS anon_1]
+[parameters: (2,)]
+(Background on this error at: http://sqlalche.me/e/14/e3q8)

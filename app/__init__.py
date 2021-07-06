@@ -1,5 +1,6 @@
 from flask import Flask
 from config import Config
+from flask_mail import Mail
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -7,6 +8,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 
 appName = Flask(__name__)
+mail = Mail(appName)
 
 login = LoginManager(appName)
 login.login_view = 'login'
@@ -50,3 +52,4 @@ if not appName.debug:
 
     appName.logger.setLevel(logging.INFO)
     appName.logger.info('Microblog startup')
+
