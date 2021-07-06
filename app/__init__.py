@@ -12,6 +12,7 @@ import logging
 from logging.handlers import SMTPHandler
 from logging.handlers import RotatingFileHandler
 import os
+from flask_moment import Moment
 
 appName = Flask(__name__)
 appName.config.from_object(Config)
@@ -28,7 +29,7 @@ appName.config.from_object(Config)
 
 migrate = Migrate(appName, db)
 bootstrap = Bootstrap(appName)
-
+moment = Moment(appName)
 
 if not appName.debug:
     if appName.config['MAIL_SERVER']:
