@@ -8,25 +8,27 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 
 from flask_bootstrap import Bootstrap
-
-appName = Flask(__name__)
-mail = Mail(appName)
-bootstrap = Bootstrap(appName)
-
-login = LoginManager(appName)
-login.login_view = 'login'
-
-appName.config.from_object(Config)
-
-db = SQLAlchemy(appName)
-migrate = Migrate(appName, db)
-
-from app import routes, models, errors
-
 import logging
 from logging.handlers import SMTPHandler
 from logging.handlers import RotatingFileHandler
 import os
+
+appName = Flask(__name__)
+appName.config.from_object(Config)
+db = SQLAlchemy(appName)
+
+
+mail = Mail(appName)
+
+login = LoginManager(appName)
+login.login_view = 'login'
+login.login_message = "Пожалуйста, войдите, чтобы открыть эту страницу."
+
+appName.config.from_object(Config)
+
+migrate = Migrate(appName, db)
+bootstrap = Bootstrap(appName)
+
 
 if not appName.debug:
     if appName.config['MAIL_SERVER']:
@@ -56,3 +58,5 @@ if not appName.debug:
     appName.logger.setLevel(logging.INFO)
     appName.logger.info('Microblog startup')
 
+
+from app import routes, models, errors
