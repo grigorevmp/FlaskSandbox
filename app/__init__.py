@@ -7,8 +7,11 @@ from flask_migrate import Migrate
 
 from flask_login import LoginManager
 
+from flask_bootstrap import Bootstrap
+
 appName = Flask(__name__)
 mail = Mail(appName)
+bootstrap = Bootstrap(appName)
 
 login = LoginManager(appName)
 login.login_view = 'login'

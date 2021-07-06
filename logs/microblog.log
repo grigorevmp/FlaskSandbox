@@ -15,3 +15,8 @@ Traceback (most recent call last):
   File "D:\PythonProjects\flaskTest\app\models.py", line 72, in get_reset_password_token
     return jwt.encode(
 AttributeError: 'str' object has no attribute 'decode'
+2021-07-06 15:42:12,532 INFO: Microblog startup [in D:\PythonProjects\flaskTest\app\__init__.py:54]
+2021-07-06 15:42:26,087 INFO: Microblog startup [in D:\PythonProjects\flaskTest\app\__init__.py:54]
+2021-07-06 15:44:53,592 INFO: Microblog startup [in D:\PythonProjects\flaskTest\app\__init__.py:57]
+2021-07-06 15:47:05,901 INFO: Microblog startup [in D:\PythonProjects\flaskTest\app\__init__.py:57]
+2021-07-06 15:48:21,006 INFO: Microblog startup [in D:\PythonProjects\flaskTest\app\__init__.py:57]

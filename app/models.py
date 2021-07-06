@@ -8,6 +8,7 @@ import jwt
 from app import appName
 from flask import render_template
 
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
@@ -72,7 +73,6 @@ class User(UserMixin, db.Model):
         return jwt.encode(
             {'reset_password': self.id, 'exp': time() + expires_in},
             appName.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
-
 
     @staticmethod
     def verify_reset_password_token(token):
